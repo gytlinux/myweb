@@ -1,0 +1,24 @@
+{% extends "layout.html"%}
+{% block content %}
+
+
+<div>
+        <h3>{{content.title}}</h3>
+
+        <p>标签:<span>{{content.tag}}</span> 时间:<span>{{content.createdate}}</span></p>
+
+        <div>
+        <span>{{content.body}}</span>
+        </div>
+</div>
+<div><a href="javascript:window.history.back()">返回</a></div>
+
+<!--
+    <div>
+       <a href="/?tag={{tag}}&page={{page-1}}"><span>上一页</span></a>
+       <span>{{page}}</span> / <span>{{pages}}</span>
+       <a href="/?tag={{tag}}&page={{page+1}}"><span>下一页</span></a>
+    </div>
+-->
+
+{% endblock%}
