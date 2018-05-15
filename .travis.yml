@@ -1,23 +1,31 @@
 language: node_js
 node_js:
 - '8'
-env: DB=mysql
+#env: DB=mysql
 
-script: pm2 start app.js
-
+script: 
+#    - pm2 start app.js
+    - node -c app.js
 addons:
     ssh_known_hosts:
     - 139.199.22.219
 
+
+notifocations:
+    email:
+        recipients:
+            - gytlinux@163.com
+        on_success: always
+        om_failure: always
 
 before_install:
 - openssl aes-256-cbc -K $encrypted_1fcae837305b_key -iv $encrypted_1fcae837305b_iv
     -in id_rsa.enc -out ~/.ssh/id_rsa -d
 - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.6.0
 - export PATH="$HOME/.yarn/bin/:$PATH"
-- yarn global add pm2
-- mysqladmin -uroot password "gytlinux"
+#- yarn global add pm2
+#- mysqladmin -uroot password "gytlinux"
 
 after_success:
 - chmod 600 ~/.ssh/id_rsa
-- ssh root@139.199.22.219 -o StrictHostKeyChecking=no 'cd /media/myweb/ && git pull && yarn && pm2 restart app.js'
+- ssh root@139.199.22.219 -o StrictHostKeyChecking=no 'cd /media/myweb/ && git pull && yarn && node -c app.js'
