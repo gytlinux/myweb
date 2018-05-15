@@ -2,7 +2,14 @@ language: node_js
 node_js:
 - '8'
 env: DB=mysql
+
 script: pm2 start app.js
+
+addons:
+    ssh_known_hosts:
+    - 211.159.156.133
+
+
 before_install:
 - openssl aes-256-cbc -K $encrypted_1fcae837305b_key -iv $encrypted_1fcae837305b_iv
   -in id_rsa.enc -out ~\/.ssh/id_rsa -d
