@@ -7,7 +7,7 @@ script: pm2 start app.js
 
 addons:
     ssh_known_hosts:
-    - 211.159.156.133
+    - 139.199.22.219
 
 
 before_install:
@@ -20,4 +20,4 @@ before_install:
 
 after_success:
 - chmod 600 ~/.ssh/id_rsa
-- ssh gyt@211.159.156.133 -o StrictHostKeyChecking=no 'cd /media/myweb/ && git pull && yarn && pm2 restart app.js'
+- ssh root@139.199.22.219 -o StrictHostKeyChecking=no 'cd /media/myweb/ && git pull && yarn && pm2 restart app.js'
