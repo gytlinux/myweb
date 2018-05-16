@@ -6,8 +6,8 @@ script:
     - pm2 start app.js
     - curl 127.0.0.1:3000
 
-#addons:
-#    ssh_known_hosts: 139.199.22.219
+addons:
+    ssh_known_hosts: 211.159.156.133
 
 notifications:
     email:
@@ -15,13 +15,13 @@ notifications:
         on_failure: always
 
 before_install:
-#    - openssl aes-256-cbc -K $encrypted_1fcae837305b_key -iv $encrypted_1fcae837305b_iv
-#        -in id_rsa.enc -out ~/.ssh/id_rsa -d
+    - openssl aes-256-cbc -K $encrypted_1fcae837305b_key -iv $encrypted_1fcae837305b_iv
+        -in id_rsa.enc -out ~/.ssh/id_rsa -d
     - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.6.0
     - export PATH="$HOME/.yarn/bin/:$PATH"
     - yarn global add pm2
     - mysqladmin -uroot password "gytlinux"
 
-#after_success:
-#    - chmod 600 ~/.ssh/id_rsa
-#    - ssh root@139.199.22.219 -o StrictHostKeyChecking=no 'cd /media/myweb/ && git pull && yarn && node -c app.js'
+after_success:
+    - chmod 600 ~/.ssh/id_rsa
+    - ssh gyt@211.159.156.133 -o StrictHostKeyChecking=no 'cd /media/myweb/ && git pull && yarn && node -c app.js'
