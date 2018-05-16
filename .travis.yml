@@ -11,7 +11,7 @@ addons:
     - 139.199.22.219
 
 
-notifocations:
+notifications:
     email:
         recipients:
             - gytlinux@163.com
