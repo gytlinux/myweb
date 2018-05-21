@@ -4,8 +4,7 @@ node_js: '8'
 services: mysql
 script:
     - pm2 start app.js
-    #- curl 127.0.0.1:3000
-    - pm2 log
+    - curl 127.0.0.1:3000
 notifications:
     email:
         recipients: gytlinux@163.com
