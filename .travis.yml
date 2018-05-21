@@ -4,7 +4,7 @@ node_js: '8'
 services: mysql
 script:
     - node app.js &
-    - curl 127.0.0.1:3000
+    - curl localhost:3000
 notifications:
     email:
         recipients: gytlinux@163.com
