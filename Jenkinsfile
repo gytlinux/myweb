@@ -20,7 +20,9 @@ pipeline {
             deleteDir()
             }
         success {
-            echo 'I succeeeded'
+            mail to:'gytlinux@163.com',
+                 subject: "Success",
+                 body: "success ${env.BUILD_URL}"
             }
         unstable {
             echo 'I am unstable :/'
