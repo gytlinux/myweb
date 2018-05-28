@@ -8,7 +8,8 @@ pipeline {
     stages {
         stage('Build') { 
            steps {
-              sh 'node app.js' 
+              sh 'yarn global add pm2'
+              sh 'pm2 start app.js' 
            }
         }
     }
