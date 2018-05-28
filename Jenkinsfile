@@ -16,15 +16,15 @@ pipeline {
     }
     post {
         success {
-            mail to:'gytlinux@163.com',
-                 subject: "Success",
-                 body: "success ${env.BUILD_URL}"
+            echo "Success!"
             }
         unstable {
             echo 'I am unstable :/'
             }
         failure {
-            echo 'I failed :('
+            mail to:'gytlinux@163.com',
+                 subject: "Success",
+                 body: "success ${env.BUILD_URL}"
             }
         changed {
             echo 'Things were different before...'
