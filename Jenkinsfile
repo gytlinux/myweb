@@ -13,4 +13,16 @@ pipeline {
            }
         }
     }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'curl localhost:3000'
+            }
+        }
+    }
+    post {
+        always {
+            junit 'build/reports/**/*.xml'
+        }
+    }
 }
