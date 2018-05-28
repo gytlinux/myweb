@@ -14,19 +14,10 @@ pipeline {
     
     }
     post {
-        success {
-            echo "Success!"
-            }
-        unstable {
-            echo 'I am unstable :/'
-            }
         failure {
             mail to:'gytlinux@163.com',
                  subject: "wrong",
                  body: "wrong ${env.BUILD_URL}"
-            }
-        changed {
-            echo 'Things were different before...'
             }
     }
 }
