@@ -8,7 +8,6 @@ pipeline {
     stages {
         stage('Build') { 
            steps {
-              sh 'yarn global add pm2'
               sh 'pm2 start app.js' 
            }
         }
@@ -23,8 +22,8 @@ pipeline {
             }
         failure {
             mail to:'gytlinux@163.com',
-                 subject: "Success",
-                 body: "success ${env.BUILD_URL}"
+                 subject: "wrong",
+                 body: "wrong ${env.BUILD_URL}"
             }
         changed {
             echo 'Things were different before...'
