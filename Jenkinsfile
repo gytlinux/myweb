@@ -4,7 +4,9 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'node -v&&npm -v'
+                sh 'node -v'
+                sh 'npm -v'
+                sh 'echo "Hello World!"'
             }
         }
     }
