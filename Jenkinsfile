@@ -15,10 +15,6 @@ pipeline {
     
     }
     post {
-        always {
-            echo 'this is a test'
-            deleteDir()
-            }
         success {
             mail to:'gytlinux@163.com',
                  subject: "Success",
