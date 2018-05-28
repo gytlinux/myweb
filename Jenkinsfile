@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'node app.js'
+                sh 'node -c app.js'
             }
         }
     }

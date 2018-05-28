@@ -39,7 +39,7 @@ app.use('/admin',require('./routes/admin'));
 //app.use('/api',api);
 
 
-app.set('port',process.env.PORT||80);
+app.set('port',process.env.PORT||3000);
 app.set('ip',process.env.IP||'0.0.0.0')
 app.listen(app.get('port'),app.get('ip'),function(){
     console.log('Service listening on port '+app.get('ip')+':'+app.get('port'));
