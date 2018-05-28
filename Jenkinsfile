@@ -12,8 +12,7 @@ pipeline {
               sh 'pm2 start app.js' 
            }
         }
-    }
-    stages {
+    
         stage('Test') {
             steps {
                 sh 'curl localhost:3000'
