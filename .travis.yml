@@ -9,6 +9,7 @@ script:
 notifications:
     email:
         recipients: gytlinux@163.com
+        on_success: change
         on_failure: always
 
 before_install:
