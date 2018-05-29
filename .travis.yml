@@ -8,7 +8,9 @@ script:
     - curl localhost:3000
 notifications:
     email:
-        recipients: gytlinux@163.com
+        recipients: 
+            - gytlinux@163.com
+            - gytlinux@139.com
         on_success: change
         on_failure: always
 

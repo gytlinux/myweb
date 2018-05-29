@@ -16,8 +16,8 @@ pipeline {
     post {
         failure {
             mail to: 'gytlinux@163.com',
-                 subject: "wrong",
-                 body: "wrong ${env.BUILD_URL}"
+                 subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+                 body: "Something is wrong with ${env.BUILD_URL}"
             }
     }
 }
