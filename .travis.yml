@@ -11,6 +11,8 @@ notifications:
         recipients: 
             - gytlinux@163.com
             - gytlinux@139.com
+        on_success: always
+        on_failure: always
 
 before_install:
     - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.6.0
