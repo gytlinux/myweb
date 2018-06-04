@@ -1,30 +1,45 @@
 var mysql = require('mysql');
+ 
+module.exports = function createdb() {
 
-var pool = mysql.createPool({
-    host: process.env.MYSQL_HOST,
-    port: process.env.MYSQL_PORT,
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DB
+db = mysql.createConnection({
+    host : process.env.MYSQL_HOST,
+    user : process.env.MYSQL_USER,
+    port : process.env.MYSQL_PORT,
+    password: process.env.MYSQL_PASSWORD
     });
 
-var code = {
-    insert : "insert into code set title=?,tag=?,createdate=?,abstract=?,body=?;",
-    deleteid : "delete from code where id=?;",
-    updatecode : "update code set title=?,tag=?,abstract=?,body=? where id=?;",
+var base = process.env.MYSQL_DB;
 
-    findone : "select * from code where id=?;",
-    findall : "select * from code order by createdate desc;",
-    findallpage : "select * from code order by createdate desc limit ?,?;",
+var code = `create table if not exists code(
+             id int not null auto_increment,
+             title varchar(100) not null,
+             tag varchar(100) not null,
+             createdate char(100) not null,
+             abstract varchar(500) not null,
+             body longtext not null,
+             primary key ( id, title )
+             ) default charset=utf8;`
 
-    findtags : "select distinct tag from code;",
-    findtagpage : "select * from code where tag=? order by createdate desc limit ?,?;",
-    findtag : "select * from code where tag=? order by createdate desc;",
+var tables = [code]
+
+db.connect(function(err){
+    if (err) {
+        console.log(err);
+    } else {
+        db.query("create database if not exists "+base+" default character set utf8 collate utf8_general_ci",function(err){
+            if (err){console.log(err)};
+            db.query("use "+base,function(err){
+                if (err){console.log(err)};
+                for (i=0;i<tables.length;i++){
+                    db.query(tables[i],function(err){
+                        if (err){console.log(err)};
+                        }); 
+                };
+                db.end();               
+            });
+        });
+    }
+})
 
 }
-
-
-module.exports = {
-    pool,
-    code
-    }

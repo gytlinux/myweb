@@ -1,0 +1,37 @@
+{% extends "layout.html"%}
+{% block content %}
+
+<div class="onepage">
+
+  <div class="pageheader">
+    <p>{{content.title||"test-title"}}</p>
+      <div>
+        标签:<span>{{content.tag||"test-tag"}}</span>
+        |
+        更新:<span>{{content.createdate||"YYYY-MM-DD HH:MM:SS"}}</span>
+      </div>
+  </div>
+
+
+  <div class="pagebody">
+    <span>{{content.body||"test-body"}}</span>
+  </div>
+
+
+
+  <div class="pagefoo">
+    {% if previous == '' %}
+    <a href="/code">返回首页</a>
+    {% else %}
+    <a href="/code/page?contentid={{previous.id}}">< 上一章:{{previous.title}}</a>
+    {% endif %}
+    <a href="javascript:window.history.back()">返回</a>
+    {% if next == '' %}
+    <a href="/code">返回首页</a>
+    {% else %}
+    <a href="/code/page?contentid={{next.id}}">下一章:{{next.title}} ></a>
+    {% endif %}
+    </div>
+
+</div>
+{% endblock%}

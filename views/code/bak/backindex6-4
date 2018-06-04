@@ -1,0 +1,60 @@
+{% extends "layout.html"%}
+{% block content %}
+
+{% if articles == '' %}
+  <div class="list">
+    <div class="list-content">
+        <div class="content-header">
+            <span>测试</span>
+            <div>
+                <span class="none">标签-</span>
+                <span>test</span>
+                <span> | </span>
+                <span class="none">更新-</span>
+                <span>YYYY-MM-DD HH:MM:SS</span>
+            </div>
+        </div>
+        <div class="content-body">
+            <span>##这只是一个测试</span>
+        </div>
+    </div>
+    <div class="list-skip">
+        <a href="/code/page?contentid=test">< < < 全文阅读 > > ></a>
+    </div>
+  </div>
+{% else %}
+  {% for article in articles %}
+
+  <div class="list">
+    <div class="list-content">
+
+      <div class="content-header">
+         <span>{{article.title}}</span>
+         <div>
+           <span class="none">标签-</span>
+           <span>{{article.tag}}</span>
+           <span> | </span>
+           <span class="none">更新-</span> 
+           <span>{{article.createdate}}</span>
+         </div>
+      </div>
+
+      <div class="content-body">
+        <span>{{article.abstract}}</span>
+      </div>
+
+    </div>
+
+    <div class="list-skip">
+      <a href="/code/page?contentid={{article.id}}"> <<< 全文阅读 >>> </a>
+    </div>
+                                                                  
+  </div> 
+  {% endfor%}
+{% endif %}
+<div class="page">                       
+  <a href="/code/?tag={{tag}}&page={{page-1}}"><span>上一页</span></a>
+  <span style="color:lime;">{{page||1}}</span> / <span style="color:green;">{{pages||1}}</span>
+  <a href="/code/?tag={{tag}}&page={{page+1}}"><span>下一页</span></a>
+</div>
+{% endblock%}

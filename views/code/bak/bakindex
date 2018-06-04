@@ -1,0 +1,60 @@
+{% extends "layout.html"%}
+{% block content %}
+{% for article in articles %}
+
+<div class="list">
+  <div class="pageheader">
+    <p>{{article.title||"test-title"}}</p>
+      <div>
+        标签:<span>{{article.tag||"test-tag"}}</span>
+        |
+        更新:<span>{{article.createdate||"YYYY-MM-DD HH:MM:SS"}}</span>
+      </div>
+  </div>
+  <div class="artbody">
+    <span>{{article.abstract||"test-abstract"}}</span>
+  </div>
+  <div class="skip">
+    <button type="button" data-toggle="modal" data-target="#myModal">
+        窗口
+    </button>
+    <p><<< 全文阅读 >>></p>
+    <a href="/code/page?contentid={{article.id}}">网页</a>
+  </div>
+
+
+  <div class="modal fade" id="myModal">
+     <div class="modal-dialog modal-lg">
+       <div class="modal-content">
+                                          
+         <div class="modal-header">
+           <div class="modal-title" align="content">
+           <h4>{{article.title||"test-title"}}</h4>
+           <p>
+              标签:<span>{{article.tag||"test-tag"}}</span>
+              时间:<span>{{article.createdate||"YY-MM-DD HH:MM:SS"}}</span>
+           </p>
+           </div>
+           <button type="button" class="close" data-dismiss="modal">&times;</button>
+         </div>
+
+         <div class="modal-body">
+            {{article.body||"test-body"}}
+         </div>
+                                                      
+         <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">返回</button>
+         </div>
+                                                                   
+      </div>
+    </div>
+  </div>
+</div> 
+{% endfor%}
+
+<div class="page">                       
+  <a href="/code/?tag={{tag}}&page={{page-1}}"><span>上一页</span></a>
+  <span style="color:rgb(0,255,0,1);">{{page||1}}</span> / <span>{{pages||1}}</span>
+  <a href="/code/?tag={{tag}}&page={{page+1}}"><span>下一页</span></a>
+</div>
+{% endblock%}

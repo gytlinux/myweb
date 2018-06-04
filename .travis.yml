@@ -11,7 +11,6 @@ notifications:
         recipients: 
             - gytlinux@163.com
             - gytlinux@139.com
-        on_success: always
         on_failure: always
 
 before_install:
